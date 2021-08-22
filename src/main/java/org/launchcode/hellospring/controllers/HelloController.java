@@ -4,9 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@ResponseBody
+@RequestMapping("hello")
 public class HelloController {
 
 //    Handles request at path /hello
+//    with class addition, path is /hello/hello
 //    @GetMapping("hello")
 //    @ResponseBody
 //    public String hello() {
@@ -14,8 +17,9 @@ public class HelloController {
 //    }
 
     //    Handles request at path /goodbye
+//    after including the controller class mapping, now the URL lives at hello/goodbye
     @GetMapping("goodbye")
-    @ResponseBody
+//    @ResponseBody
     public String goodbye() {
         return "Adios, String!";
     }
@@ -23,21 +27,23 @@ public class HelloController {
 //    handles request of the form  /hello?name=LaunchCode
 //    @GetMapping("hello")
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "hello")  //allows both GET and POST to work
-    @ResponseBody
+//    @ResponseBody
     public String helloWithQueryParam(@RequestParam String name) {
         return "hello, " + name + "!";
     }
 
 //    handles requests of the form /hello/LaunchCode
     @GetMapping("hello/{name}")
-    @ResponseBody
+//    @ResponseBody
 
     public String helloWithPathParam(@PathVariable String name) {
         return "hello, " + name + "!";
     }
 
+
+//    with new class mapping, this now lives at /hello/form
     @GetMapping("form")
-    @ResponseBody
+//    @ResponseBody
     public String helloForm() {
         return "<html>" +
                 "<body>" +
