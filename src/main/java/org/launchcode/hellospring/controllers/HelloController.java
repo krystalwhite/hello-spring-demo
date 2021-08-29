@@ -72,10 +72,31 @@ public class HelloController {
                 "</html>";
     }
 
-    public static void createMessage(@RequestParam String name, @RequestParam String language) {
-        String languageHello;
-        if (language == )
+    @RequestMapping(value="hello", method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public String helloWithLanguage(@RequestParam String name, @RequestParam String language) {
+        return createMessage(name, language);
+    }
 
+    public static String createMessage(String userName, String userLanguage) {
+        String languageHello = "";
+        if (userLanguage.equals("spanish")) {
+            languageHello = "Hola, ";
+        } else if (userLanguage.equals("italian")) {
+            languageHello = "Ciao, ";
+        } else if (userLanguage.equals("hindi")) {
+            languageHello = "Namaste, ";
+        } else if (userLanguage.equals("german")) {
+            languageHello = "Guten tag, ";
+        } else if (userLanguage.equals("french")) {
+            languageHello = "Bonjour, ";
+        } else if (userLanguage.equals("farsi")) {
+            languageHello = "Salaam, ";
+        } else if (userLanguage.equals("english")) {
+            languageHello = "Hello, ";
+        }
+        languageHello += userName;
+        return languageHello;
 
     }
 
