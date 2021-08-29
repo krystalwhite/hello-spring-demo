@@ -19,49 +19,29 @@ public class HelloController {
     //    Handles request at path /goodbye
 //    after including the controller class mapping, now the URL lives at hello/goodbye
     @GetMapping("goodbye")
-//    @ResponseBody
     public String goodbye() {
-        return "Adios, String!";
+        return "Goodbye, String!";
     }
 
 //    handles request of the form  /hello?name=LaunchCode
-//    @GetMapping("hello")
-    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "hello")  //allows both GET and POST to work
-//    @ResponseBody
+    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})  //allows both GET and POST to work
     public String helloWithQueryParam(@RequestParam String name) {
-        return "hello, " + name + "!";
+        return "Hello, " + name + "!";
     }
 
 //    handles requests of the form /hello/LaunchCode
     @GetMapping("hello/{name}")
-//    @ResponseBody
-
     public String helloWithPathParam(@PathVariable String name) {
-        return "hello, " + name + "!";
+        return "Hello, " + name + "!";
     }
 
 
 //    with new class mapping, this now lives at /hello/form
-    @GetMapping("form")
-//    @ResponseBody
-    public String helloForm() {
-        return "<html>" +
-                "<body>" +
-                "<form action='hello'>" +  //submit a request to /hello
-                "<input type='text' name='name'>" +
-                "<input type='submit' value='Greet me!'>" +
-                "</form>" +
-                "</body>" +
-                "</html>";
-    }
-
-
 //    @GetMapping("form")
-//    @ResponseBody
 //    public String helloForm() {
 //        return "<html>" +
 //                "<body>" +
-//                "<form action='hello' method = 'post'>" +  //submit a request to /hello
+//                "<form action='hello'>" +  //submit a request to /hello
 //                "<input type='text' name='name'>" +
 //                "<input type='submit' value='Greet me!'>" +
 //                "</form>" +
@@ -69,5 +49,34 @@ public class HelloController {
 //                "</html>";
 //    }
 
+    //    with new class mapping, this now lives at /hello/formWithLanguage
+    @GetMapping("formWithLanguage")
+    public String helloFormWithLanguage() {
+        return "<html>" +
+                "<body>" +
+                "<form action='hello'>" +  //submit a request to /hello
+                "<input type='text' name='name'>" +
+                "<select name ='language' id='language-select'>" +
+                "<option value =''> Please select a language </option>" +
+                "<option value ='english'> English </option>" +
+                "<option value ='farsi'> Farsi </option>" +
+                "<option value ='french'> French </option>" +
+                "<option value ='german'> German </option>" +
+                "<option value ='hindi'> Hindi </option>" +
+                "<option value ='italian'> Italian </option>" +
+                "<option value ='spanish'> Spanish </option>" +
+                "</select>" +
+                "<input type='submit' value='Greet me!'>" +
+                "</form>" +
+                "</body>" +
+                "</html>";
+    }
+
+    public static void createMessage(@RequestParam String name, @RequestParam String language) {
+        String languageHello;
+        if (language == )
+
+
+    }
 
 }
