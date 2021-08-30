@@ -96,8 +96,20 @@ public class HelloController {
             languageHello = "Hello, ";
         }
         languageHello += userName;
-        return languageHello;
+//        return languageHello;
+        return prettify(languageHello);
+    }
 
+    public static String prettify(String text) {
+        return "<html>" +
+                "<body>" +
+                "<font size='+5'>" +
+                "<p style='color:#0394fc'>" +
+                text +
+                "</p>" +
+                "</font>" +
+                "</body>" +
+                "</html>";
     }
 
 }
