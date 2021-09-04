@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Chris Bay
  */
@@ -12,7 +15,8 @@ public class HelloController {
 
     // Handles requests of the form /hello?name=LaunchCode
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "hello")
-//    @ResponseBody not used now because using template AND must add Model model
+//    @ResponseBody not used now because using template
+//    when using template, must add Model model parameter and the body below
     public String helloWithQueryParam(@RequestParam String name, Model model) {
 //        return "Hello, " + name + "!";
         String greeting = "Hello, " + name + "!";
@@ -22,15 +26,27 @@ public class HelloController {
 
     // Handles requests of the form /hello/LaunchCode
     @GetMapping("hello/{name}")
-    @ResponseBody
-    public String helloWithPathParam(@PathVariable String name) {
-        return "Hello, " + name + "!";
+//    @ResponseBody
+    public String helloWithPathParam(@PathVariable String name, Model model) {
+//        return "Hello, " + name + "!";
+        String greeting = "Hello, " + name;
+        model.addAttribute("greeting", greeting);
+        return "hello";
     }
-
 
     @GetMapping("form")
     public String helloForm() {
         return "form";
     }
 
+//    located at localhost:8080/hello-names
+    @GetMapping("hello-names")
+    public String helloNames(Model model) {
+        List<String> names = new ArrayList<>();
+        names.add("LaunchCode");
+        names.add("Java");
+        names.add("JavaScript");
+        model.addAttribute("names", names);
+        return "hello-list";
+    }
 }
